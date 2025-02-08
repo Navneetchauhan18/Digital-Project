@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+</head>
+<body>
+      <button class="show-quantity" >show Quantity</button>
+      <button class="add-to-cart">Add to cart</button>
+      <button onclick="
+        UpdateCartQuantity(2)">+2</button>
+      <button onclick="
+        UpdateCartQuantity(3)">+3</button>
+      <button onclick=" UpdateCartQuantity(4);
+      ">+4</button>
+      <button class="plus-five">+5</button>
+      <button onclick="updateCartQuantity(2);
+      ">-2</button>
+      <button onclick=" updateCartQuantity(3);
+      ">-3</button>
+      <button class="remove-one">Remove from cart</button>
+      <button class="reset">Reset Cart</button>
+
+      <br>
+
+      <p class="car-quant"></p>
+
+<script>
+            let cart_quantity = 0;
+
+            document.querySelector(".show-quantity").addEventListener("click", () => {
+                     console.log("Cart Quantity: " + cart_quantity);
+            });
+           
+           document.querySelector(".add-to-cart").addEventListener("click", () => {
+           UpdateCartQuantity(1);
+           });
+              
+           document.querySelector(".plus-five").addEventListener("click", () => {
+            UpdateCartQuantity(5);
+           });
+
+           document.querySelector(".remove-one").addEventListener("click", () => {
+           updateCartQuantity(1);
+            console.log(`Cart Quantity after removing item: ${cart_quantity}`);
+           });
+
+           document.querySelector(".reset").addEventListener("click", () => {
+                    cart_quantity = 0;
+                    console.log("Cart was reset");
+                    console.log("Cart Quantity: " + cart_quantity);
+                    document.querySelector('.car-quant').innerHTML = `Cart quantity: ${cart_quantity}`;
+           });
+
+           if(cart_quantity >= 10) {
+              alert('The cart is full');
+           }
+
+           function updateCartQuantity(items) {
+            if(cart_quantity - items < 0) {
+                alert('The cart is empty');
+                return;
+              } 
+
+              cart_quantity -= items;
+              console.log('cart Quantity: ' + cart_quantity);
+              document.querySelector('.car-quant').innerHTML = `Cart quantity: ${cart_quantity}`;
+           }
+
+           function UpdateCartQuantity(item) {
+            if(cart_quantity + item > 10) {
+                alert('The cart is full');
+                return;
+              } 
+              
+                console.log('Cart Quantity: ' + (cart_quantity += item));
+                document.querySelector('.car-quant').innerHTML = `Cart quantity: ${cart_quantity}`;
+           }
+
+          
+        
+
+           let name = 'Navneet';
+           console.log(typeof name);
+
+           console.log(`My name is: ${name}`);
+           
+           let coffe = 5; let bangles = 3; let soup = 9;
+           let order = coffe + bangles*2 + soup;
+           console.log(`Cost of food: ${order}`);
+           console.log('Tax (10%): ' + order*0.1);
+           console.log('Total cost: ' + (order+(order*0.1)));    
+
+        
+</script>
+</body>
+</html>

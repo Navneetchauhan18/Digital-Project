@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Practice</title>
+</head>
+<body>
+	<h1>This is a practice page</h1>
+	    <button>9a</button>
+      <button class="button-9b">9b</button>
+
+      <br>
+      <br>
+
+      <button  onclick="youClick('heads');">heads</button>
+      <button  onclick="youClick('tails');">tails</button>
+      <p class="display-result"></p>
+
+      <input type="text" onkeydown="disPlay(event);" > <button onclick="SubmitName();">Submit</button>
+      <p class="show-name"></p>
+
+      <input type="number" class="value-prsnt" onkeydown="withKey(event);"> <button onclick="Calculator()">Calculate</button>
+      <p class="disp"></p>
+
+      <input type="text" onkeyup="dispLive();" class="rep-live">
+      <p class="live-letters"></p>
+	<script>
+		      console.log('hello');
+          console.log(document.querySelector('button'));
+          document.querySelector('.button-9b').innerHTML = '9b done!';
+
+          
+          function youClick(press) {
+
+            document.querySelector('.display-result').innerHTML = `You choose: ${press}`;
+          }
+          
+          function disPlay(event) {
+            if(event.key === 'Enter') {
+              SubmitName();
+            }
+          }
+          function SubmitName() {
+          document.querySelector('.show-name').innerHTML = `Your name is: ${document.querySelector('input').value}`;
+          }
+
+           function withKey(event) {
+            if(event.key === 'Enter') {
+              Calculator();
+            }
+           }
+          function Calculator() {
+            let amt = document.querySelector('.value-prsnt');
+            let cost = Number(amt.value) * 100;
+
+            if(cost < 5000) {
+               cost += 1000;
+            } else {
+              cost;
+            }
+            document.querySelector('.disp').innerHTML = `Your total charges with delivery = $${cost / 100}`;
+          }
+
+          function dispLive() {
+         const inputElement = document.querySelector('.rep-live');
+         document.querySelector('.live-letters').innerHTML = inputElement.value;
+          }
+
+          
+	</script>
+</body>
+</html>

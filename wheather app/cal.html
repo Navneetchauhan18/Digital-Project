@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator
+    </title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+        
+        color: aliceblue;
+      }
+
+      .calculation {
+        color: white;
+        font-size: 45px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+
+      .num {
+        height: 40px;
+        width: 40px;
+        color: white;
+        background-color: rgba(143, 143, 143, 0.436);
+        border: none;
+        border-radius: 50%;
+        font-size: large;
+      }
+
+      .operator {
+        height: 40px;
+        width: 40px;
+        color: white;
+        background-color: orange;
+        border: none;
+        border-radius: 50%;
+        font-size: large;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <p class="show-cal calculation"></p>
+    <p>
+      <button onclick="
+        updateCalculation('1');
+      " class="num">1</button>
+
+      <button onclick="
+        updateCalculation('2');
+      " class="num">2</button>
+
+      <button onclick="
+        updateCalculation('3');
+      " class="num">3</button>
+
+      <button onclick="
+        updateCalculation(' + ');
+      " class="operator">+</button>
+    </p>
+
+    <p>
+      <button onclick="
+        updateCalculation('4');
+      " class="num">4</button>
+
+      <button onclick="
+        updateCalculation('5');
+      " class="num">5</button>
+
+      <button onclick="
+        updateCalculation('6');
+      " class="num">6</button>
+
+      <button onclick="
+        updateCalculation(' - ');
+      " class="operator">-</button>
+    </p>
+
+    <p>
+      <button onclick="
+        updateCalculation('7');
+      " class="num">7</button>
+
+      <button onclick="
+        updateCalculation('8');
+      " class="num">8</button>
+
+      <button onclick="
+        updateCalculation('9');
+      " class="num">9</button>
+
+      <button onclick="
+        updateCalculation(' * ');
+      " class="operator">*</button>
+    </p>
+
+    <p>
+      <button onclick="
+        updateCalculation('0');
+      " class="num">0</button>
+
+      <button onclick="
+        updateCalculation('.');
+      " class="num">.</button>
+
+      <button onclick="performCal();" class="num">=</button>
+
+      <button onclick="
+        updateCalculation(' / ');
+      " class="operator">/</button>
+    </p>
+
+    <p>
+      <button onclick="
+        calculation = '';
+        console.log(calculation);
+        document.querySelector('.show-cal').innerHTML = `${calculation}`;
+        localStorage.setItem('calculation', calculation);
+      " class="num" style="font-size: 12px;">Clear</button>
+    </p>
+
+    <script>
+      let calculation = localStorage.getItem('calculation') || '';
+
+      function updateCalculation(value) {
+        calculation += value;
+        console.log(calculation);
+        document.querySelector('.show-cal').innerHTML = `${calculation}`;
+      }
+
+      function saveCalculation() {
+        localStorage.setItem('calculation', calculation);
+      }
+
+      function performCal() {
+        console.log('You have pressed Enter.');
+        calculation = eval(calculation);
+        console.log(calculation);
+        localStorage.setItem('calculation', calculation);
+        document.querySelector('.show-cal').innerHTML = `${calculation}`;
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault(); // Prevent the default behavior of Enter key
+          performCal();
+        }
+      });
+    </script>
+  </body>
+</html>

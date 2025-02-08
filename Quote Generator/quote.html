@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="quote.css">
+  <title>Quotes</title>
+</head>
+<body>
+    <div class="quote-container">
+      <div class="quote-box">
+        <h1>Quote-Generator</h1>
+           <p id="quote">This is the space for the quotes</p>
+           <p class="author" id="author">Author of the quote</p>
+           <button onclick="fetchQuotes()">Click</button>
+      </div>
+    </div>
+  
+    <script>
+      const proxyUrl = "https://api.allorigins.win/get?url=";
+     const apiUrl = "https://zenquotes.io/api/random";
+
+async function fetchQuotes() {
+  try {
+    const response = await fetch(proxyUrl +  encodeURIComponent(apiUrl) + `&t=${new Date().getTime()}`, {
+            cache: "no-cache"
+          });
+    const data = await response.json(); 
+    const parseData = JSON.parse(data.contents);
+    let quoteObj = {
+      text: parseData[0].q, 
+      author: parseData[0].a 
+    };
+
+    document.getElementById("quote").innerText = quoteObj.text;
+    document.getElementById("author").innerText = `- ${quoteObj.author}`; 
+  } catch (error) {
+    console.log("Error fetching quotes.", error);
+  }
+}
+
+</script>
+</body>
+</html>

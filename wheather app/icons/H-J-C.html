@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .amzn-button {
+      height: 30px;
+      width: 150px;
+      background-color: rgb(255, 216, 20);
+      font-weight: 550;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 25px;
+    }
+
+    .uber-request-button {
+      height: 40px;
+      width: 110px;
+      background-color: black;
+      color: white;
+      border-radius: 5px;
+      font-weight: 500;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .uber-schedule-button {
+          height: 40px;
+          width: 150px;
+          background-color: rgb(230, 230, 230);
+          border: none;
+          border-radius: 5px;
+          font-weight: 550;
+          cursor: pointer;
+    }
+    .is-toggled {
+    height: 30px;
+    width: 80px;
+    border: none;
+    background-color: rgb(230, 230, 230);
+    margin: 5px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    .is-toggled-style {
+      background-color: black;
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <button class="amzn-button">Add to Cart</button> <br>
+  <button class="uber-request-button">Request now</button>
+  <button class="uber-schedule-button">Schedule for later</button>
+<br>
+  <button class="js-button">Test</button>
+
+  <button onclick="toggle('.js-btn')" class="is-toggled js-btn">Gaming</button>
+
+    <button onclick="toggle('.js-btn-1')" class="is-toggled js-btn-1">Music</button>
+    
+    <button onclick="toggle('.js-btn-2')" class="is-toggled js-btn-2">Tech</button>
+  
+
+
+  <script>
+     const check = document.querySelector('.js-button');
+     console.log(check.classList.contains('js-button'));
+
+    function toggle(selector) {
+     const toggle = document.querySelector(selector);
+    
+     if(!toggle.classList.contains('is-toggled-style')) {
+      prevToggler();
+      toggle.classList.add('is-toggled-style');
+     } else {
+      toggle.classList.remove('is-toggled-style');
+     }
+    }
+
+    function prevToggler() {
+       const btn = document.querySelector('.is-toggled-style');
+       if(btn) {
+        btn.classList.remove('is-toggled-style');
+       }
+    }
+  </script>
+</body>
+</html>

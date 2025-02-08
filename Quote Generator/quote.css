@@ -1,0 +1,99 @@
+* {  
+   box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.quote-container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(45deg, #b9b8b8,rgba(0, 255, 136, 0.856));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-box {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3vw;
+  color: rgb(244, 57, 0);
+   margin-bottom: 10px;
+}
+
+p {
+  font-size: 2vw;
+ 
+}
+
+.auother {
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+button {
+  width: auto;
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: rgb(65, 43, 212);
+  color: wheat;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+@media (max-width: 768px) {
+  .quote-box {
+    width: 80%;
+  }
+
+  h1 {
+    font-size: 6vw;
+  }
+
+  p {
+    font-size: 4vw;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 6px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quote-box {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 7vw;
+  }
+
+  p {
+    font-size: 4.5vw;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 5px 12px;
+  }
+}

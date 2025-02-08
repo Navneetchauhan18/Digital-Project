@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App</title>
+</head>
+<body>
+  <button onclick="increaseOne()">Add</button> <button onclick="decOne()">Remove</button>
+       <button class="start-button" >Start</button> <br><br>
+       <button class="add-cart-button">Add to cart</button>
+       <p class="message"></p>
+
+       <br>
+
+       <button class="js-click-button" onclick="">Click</button>
+  <script>
+    const buttonElement = document.querySelector('.js-click-button');
+    const fun = () => {
+      console.log('clicked');
+    };
+   
+    buttonElement.addEventListener('click', fun);
+    buttonElement.removeEventListener('click', fun);
+
+    buttonElement.addEventListener('click', () => {
+      console.log('click');
+    });
+    const run = (param) => {
+             param();
+    }  
+    run(function add() {
+      console.log(2);
+    });
+   
+
+  const say = () => {
+      console.log('Hann ji good Marning!!');
+    }
+
+    console.log(say);
+
+    const obj = {
+          name: 'gali-gali-sim-sim',
+          objFun: function g() {
+            console.log("This fun is inside obj.");
+          }
+    };
+    obj.objFun();
+
+    ['jaadu',
+      'garrr',
+      'teree',
+      'naainaa'
+    ].forEach(function(value, index) {
+      console.log(value, index);
+    })
+
+    const add = (a, b) => {
+              return (a+b);
+    }
+     console.log(add(2,3));
+
+     const runTwice = (fun) => {
+              fun();
+             console.log(add(3,15));
+     }
+     runTwice(function() {
+      console.log(add(3,15));
+     })
+     runTwice(add);
+
+     document.querySelector('.start-button').addEventListener('click', () => {
+      done();
+     });
+
+     const done = () => {
+
+       document.querySelector('.start-button').innerHTML = 'Loading...';
+       setTimeout(function() {
+         let element = document.querySelector('.start-button');
+         if(element.innerHTML === 'Loading...'){
+              element.innerHTML = 'Finished';
+         }
+       }, 1000);
+      }
+
+
+       let timeOutID;
+       const done2 = () => {
+        document.querySelector('.message').innerHTML = 'Added';
+        
+        clearTimeout(timeOutID);
+
+        timeOutID = setTimeout(function() {
+          const element = document.querySelector('.message');
+          if(element.innerHTML === 'Added'){
+            element.innerHTML = '';
+          }
+        }, 2000);       
+      }
+      document.querySelector('.add-cart-button').addEventListener('click', () => {
+        done2();
+      });
+      
+
+
+      let count = 2;
+
+      const addOne = (counter) => {
+               return counter + 1;
+      }
+      
+      const increaseOne = () => {
+        count = addOne(count);
+      }
+       
+      const removeOne = (counter)  => {
+               return counter - 1;
+      }
+      const decOne = () =>{
+        count = removeOne(count);
+      }
+       
+       
+      
+        setInterval(function() {  
+       
+          if(document.title === 'App' && count > 0){
+              document.title = `(${count})New messages`;
+          } else {
+            document.title = 'App';
+          }
+        }, 1000);
+
+
+     const arrowFun = () => {
+      console.log('This is a arrow function.');
+     };
+     arrowFun();
+      
+     let arrow = (param, param2) => {
+      console.log(param + param2);
+      return 5;
+     };
+     console.log(arrow(18, 3));
+
+     const oneLine = () => 2 + 11;
+     console.log('Mai ' + oneLine());
+
+     const oneParam = param => {
+      console.log(param + 0);
+     }
+     oneParam(18);
+     
+     const obj1 = {
+
+      //Two way to declare advance funtN inside the object-
+
+     // 1) method: () => {}
+
+     //2) -> 
+      method() {
+        console.log('This is a functN inside object.');
+      }
+     };
+     obj1.method();
+
+     console.log([1,2,-5,9,-18,18].filter((value, index) => {
+         return value > 0;
+     }));
+
+     console.log([3,4,5].map((value => value * 2
+     )));
+
+
+     const multiply = (num1, num2) =>  num1 * num2; 
+     console.log(multiply(7,10));
+
+     const countPositive = (nums) => {
+      let counter = 0;
+      nums.forEach((value, index) => {
+        if (value > 0) {
+          counter++;
+        }
+      });
+      return counter;
+    };
+
+    console.log(countPositive([1, -3, 5, -1, 0, 15, 20, -18]));
+
+    const addNum = (array, num) => {
+      let newArray = [];
+      array.map((value, index) => {
+            newArray.push(value + num);
+      });
+      return newArray;
+    };
+
+    console.log(addNum([-2, -1, 0, 99], 2));
+
+    const removeEgg = (foods) => {
+          let newArray = [];
+          foods.filter((value) => {
+                if(value !== 'egg') {
+                  newArray.push(value);
+                }
+          });
+          return newArray;
+    };
+
+    console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+
+    const removeAnnda = (foods) => {
+          let newArray = []; 
+          let count = 0;
+          foods.filter((value) => {
+                if(value === 'egg' && count < 2) {
+                  count++;
+                } else {
+                  newArray.push(value);
+                }
+          });
+          return newArray;
+    };
+
+    console.log(removeAnnda(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+  </script>
+</body>
+</html>
