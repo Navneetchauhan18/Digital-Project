@@ -1,0 +1,106 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.image-container {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(60deg, #eb5050, rgba(255,244,123,2)) ;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10%;
+  color: rgb(4, 8, 35);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.image-set {
+  height: 60vh;
+  width: 70%;
+  width: 600px;
+  position: relative;
+  border: 1px solid black;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  
+}
+.crousel-item {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  overflow: hidden;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: 1s;
+  position: absolute;
+}
+
+.arrow-left, .arrow-right {
+  height: 40px;
+  width: 40px;
+  transform: translate(-50%);
+  padding: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+}
+
+.arrow-left {
+  left: -10px;
+}
+.arrow-right {
+  right: -70px;
+}
+
+.play-button, .pause-button{
+  height: 30px;
+  width: 30px;
+  padding: 2px;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  left: 130px;
+  top: 450px;
+}
+
+.play-button{
+  left: 280px;
+}
+
+.pause-button {
+  left: 250px;
+}
+
+
+.carousel {
+  position: absolute;
+  top: 100%;
+  left: 50px;
+}
+
+.radio {
+  appearance: none;
+  height: 5px;
+  width: 40px;
+  margin: 2px;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.radio:checked {
+   background-color: rgb(35, 27, 36);
+}

@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+body {
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+margin: 0px;
+padding: 0px;
+}
+
+p {
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+h2 {
+    margin: 0px;
+    
+}
+
+.si-container {
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(40deg, #4d56cd, #cf7be6);
+}
+
+.si-box {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.si-box:hover {
+  transform: scale(1.02); /* Slightly enlarges on hover */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.chart-container {
+  width: 110px;
+  height: 110px;
+}
+
+input {
+  font-weight: 550;
+  font-size: 15px;
+  height: 35px;
+  width: 40%;
+  padding: 8px;
+  margin: .50% ;
+  border: none;
+  border-radius: 10px;
+}
+
+#js-duration {
+    margin-left: 69px;
+}
+#js-dropdown {
+     height: 4rch;
+     width: 72px;
+     font-size: 15px;
+     font-weight: bold;
+     border: none;
+     border-radius: 10px;
+    cursor: pointer;
+}
+
+button {
+  width: 25%;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 540;
+  background: #ef076f;
+  color: rgb(247, 243, 243);
+}

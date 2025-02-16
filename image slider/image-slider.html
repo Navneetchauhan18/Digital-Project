@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="image-slider.css">
+  <title>Image-Scroller</title>
+</head>
+<body>
+  
+     <div class="image-container">
+      <div class="title"><h1>Image Slider</h1></div>
+        <div class="image-set">
+            <div class="crousel-item active">
+              <img src="images/superCar1.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/superCar2.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/yellow dodge.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/black dodge.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/fall.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/mountain.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/temple.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/galaxy.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/forest.webp" class="img">
+            </div>
+
+            <div class="crousel-item">
+              <img src="images/actress1.webp" class="img">
+            </div>
+
+            <div class="carousel">
+              <input type="radio" id="radio0" class="radio" onclick="goToSlide(0)" checked>
+              <input type="radio" id="radio1" class="radio" onclick="goToSlide(1)">
+              <input type="radio" id="radio2" class="radio" onclick="goToSlide(2)">
+              <input type="radio" id="radio3" class="radio" onclick="goToSlide(3)">
+              <input type="radio" id="radio4" class="radio" onclick="goToSlide(4)">
+              <input type="radio" id="radio5" class="radio" onclick="goToSlide(5)">
+              <input type="radio" id="radio6" class="radio" onclick="goToSlide(6)">
+              <input type="radio" id="radio7" class="radio" onclick="goToSlide(7)">
+              <input type="radio" id="radio8" class="radio" onclick="goToSlide(8)">
+              <input type="radio" id="radio9" class="radio" onclick="goToSlide(9)">
+            </div>
+
+       <div class="icons">
+       <img src="left.png" alt="" class="arrow-left" onclick="prev()">
+       <img src="next-one.png" class="arrow-right" onclick="next()">
+       <img src="play-button.png" onclick="play()" class="play-button">
+       <img src="pause-button.png" onclick="pause()" class="pause-button">
+    </div>
+  </div>
+</div>
+
+     <script src="image-slider.js"></script>
+    </body>
+</html>

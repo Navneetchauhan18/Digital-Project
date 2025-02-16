@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+      <div class="news-container">
+        <p id="show-news-title">Todays Headlines are-</p>
+        <p id="show-news-description">This is for News description</p>
+        <button onclick="showNews()">Click to get News</button>
+      </div>
+
+      <script>
+        const apiKey = "b25706efe4b04dbd81f128c42d520af4";
+        const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=politics&apiKey=${apiKey}`;
+
+     async function showNews() {
+      try {
+          const response = await fetch(apiUrl, {
+            cache: "no-cache"
+          });
+          const data = await response.json();
+
+          if(!data.articles || data.articles.length === 0) {
+            console.log("No news articles  found!.");
+            return;
+          }
+
+        let randomNews = Math.floor(Math.random() * data.articles.length);
+        let selectNews = data.articles[randomNews];
+
+          document.getElementById("show-news-title").innerText = `Title:- ${selectNews.title}`;
+          document.getElementById("show-news-description").innerText = `Description:- ${selectNews.description}`;
+        } catch(error) {
+          console.log("There is error in fetching news. ", error);
+        }
+      }
+      </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="SI.css">
+  <title>SI Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+     <div class="si-container">
+      <div class="si-box">
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+        <h2>Interest Calculator</h2>
+        <p><span id="show-intrest"></span></p>
+        <input type="text" name="" id="js-principle" placeholder="Enter your principal amount">
+        <input type="text" name="" id="js-intrest" placeholder="Enter Your Interest Rate %">
+        <div style="display: inline-block;">
+          <input type="text" placeholder="Time-Duration" id="js-duration">
+          <select name="" id="js-dropdown">
+            <option value="Years">Year</option>
+            <option value="Months">Month</option>
+            <option value="Days">Day</option>
+          </select>
+        </div>
+        <button class="js-calculate">Calculate</button>
+      </div>
+    </div>
+
+  <script>
+    let chartInstance;
+
+    function calculator() {
+         const principleAmount = Number(document.getElementById("js-principle").value);
+         const intrestRate = Number(document.getElementById("js-intrest").value);
+         const durationYear = Number(document.getElementById("js-duration").value);
+         const dropDown = document.getElementById("js-dropdown").value;
+
+         // Input validation
+         if (isNaN(principleAmount) || isNaN(intrestRate) || isNaN(durationYear)) {
+            document.getElementById("show-intrest").innerText = "Please enter valid numbers!";
+            return;
+         }
+
+         let result;
+         let Years =  (principleAmount * intrestRate * durationYear) / 100;
+         let Months = Years / 12;
+         let Days =  Years / 365;
+
+         switch(dropDown) {
+            case 'Years':
+              result = Years;
+              break;
+            case 'Months':
+              result = Months;
+              break;
+            case 'Days':
+              result = Days;
+              break;
+            default:
+              document.getElementById("show-intrest").innerText = "Invalid selection!";
+              return;
+         }
+
+         document.getElementById("show-intrest").innerText = `Your Interest Amount is: ${result.toFixed(2)}`;
+         updateChart(principleAmount, result);
+    }    
+
+    function updateChart(principal, interest) {
+      const myChart = document.getElementById("myChart");
+      if(!myChart) return;
+
+      const ctx = myChart.getContext("2d");
+
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(myChart, {
+        type: "doughnut",
+        data: {
+          labels: ["Principal", "Interest"],
+          datasets: [
+            {
+              data: [principal, interest],
+              backgroundColor: ["#36B2EB", "#FF6384"],
+              borderWidth: 5,
+            },
+          ],
+        },
+        options: {
+          cutout: 30,
+          borderRadius: 1,
+          hoverBorderWidth: 2,
+          plugins: {
+            legend: {
+              display: false,
+            }
+          }
+        }
+      });
+    }
+
+    // Add event listener for button click
+    document.querySelector('.js-calculate').addEventListener('click', calculator);
+
+    document.addEventListener('keydown', (event) => {
+         if(event.key === 'Enter') {
+            calculator();
+           }
+    });
+  </script>
+</body>
+</html>

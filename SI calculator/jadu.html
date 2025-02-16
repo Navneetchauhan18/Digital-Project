@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SI Calculator with Chart</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+   <p><span id="show-intrest"></span></p>
+
+   <input type="number" id="js-principle" placeholder="Enter your principal amount">
+   <input type="number" id="js-intrest" placeholder="Enter Your Interest Rate %">
+   <input type="number" id="js-duration" placeholder="Duration">
+
+   <select id="js-dropdown">
+     <option value="Years">Years</option>
+     <option value="Months">Months</option>
+     <option value="Days">Days</option>
+   </select>
+
+   <button class="js-calculate">Calculate</button>
+
+   <canvas id="myChart"></canvas> <!-- Chart Canvas -->
+
+   <script>
+      let chartInstance; // Variable to store chart instance
+
+      function calculator() {
+         const principleAmount = Number(document.getElementById("js-principle").value);
+         const interestRate = Number(document.getElementById("js-intrest").value);
+         const durationYear = Number(document.getElementById("js-duration").value);
+         const dropDown = document.getElementById("js-dropdown").value;
+
+         let result;
+         let Years = (principleAmount * interestRate * durationYear) / 100;
+         let Months = Years / 12;
+         let Days = Years / 365;
+
+         switch (dropDown) {
+            case 'Years': result = Years; break;
+            case 'Months': result = Months; break;
+            case 'Days': result = Days; break;
+            default:
+              document.getElementById("show-intrest").innerText = "Invalid selection!";
+              return;
+         }
+
+         document.getElementById("show-intrest").innerText = `Interest: ${result.toFixed(2)}`;
+
+         updateChart(principleAmount, result); // Update Chart
+      }
+
+      function updateChart(principal, interest) {
+        const ctx = document.getElementById("myChart").getContext("2d");
+
+        if (chartInstance) {
+          chartInstance.destroy(); // Destroy previous chart instance before creating a new one
+        }
+
+        chartInstance = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Principal", "Interest"],
+            datasets: [
+              {
+                data: [principal, interest],
+                backgroundColor: ["#36A2EB", "#FF6384"],
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            cutoutPercentage: 50, // Donut effect
+            rotation: -Math.PI, // Start from top
+            circumference: Math.PI, // Half-donut
+            responsive: true,
+            plugins: {
+              legend: { display: true },
+            },
+          }
+        });
+      }
+
+      document.querySelector('.js-calculate').addEventListener('click', calculator);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          calculator();
+        }
+      });
+   </script>
+</body>
+</html>
