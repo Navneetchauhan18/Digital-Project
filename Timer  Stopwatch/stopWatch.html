@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop Watch</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .stopWatch-container {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, rgb(214, 228, 118), rgb(118, 232, 139));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .timer {
+    height: 250px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+
+  .countDown {
+    font-size: 80px;
+  }
+
+  .button-container {
+   margin: 10px;
+  }
+  .button-container button {
+    height: 40px;
+    width: 60px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  #startBtn {
+     background-color: rgb(149, 70, 70);
+     color: white;
+  }
+  #startBtn:hover {
+    background-color: rgb(106, 51, 51);
+  }
+
+  #stopBtn {
+     background-color: rgb(38, 38, 245);
+     color: white;
+  }
+  #stopBtn:hover {
+    background-color: rgb(24, 24, 177);
+  }
+
+  #resetBtn {
+     background-color: rgb(136, 9, 161);
+     color: white;
+  }
+  #resetBtn:hover {
+    background-color: rgb(116, 8, 107);
+  }
+ </style>
+<body>
+  
+  <div class="stopWatch-container">
+    <div class="timer">
+      <h2 class="countDown" id="countDown-js">00:00:00</h2>
+    <div class="button-container">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+     const stopWatch = document.getElementById('countDown-js');
+    const startButton = document.getElementById('startBtn');
+    const stopButton = document.getElementById('stopBtn');
+    const resetButton = document.getElementById('resetBtn');
+
+     let mints = 0;
+     let secs = 0;
+     let mSeconds  = 0;
+     let intervalId;
+     let isRunning = false;
+
+     startButton.addEventListener('click', () => {
+      if(!isRunning) {
+     intervalId = setInterval(start, 10);
+     isRunning = true;
+    }
+  });
+
+  stopButton.addEventListener('click', () => {
+      if(isRunning) {
+     clearInterval(intervalId);
+     isRunning = false;
+    }
+  });
+
+  resetButton.addEventListener('click', () => {
+    if(isRunning) {
+     clearInterval(intervalId);
+     isRunning = false;
+    }
+    mints = 0;
+    secs = 0;
+    mSeconds = 0;
+    stopWatch.innerHTML = "00:00:00";
+     });
+
+     function start() {    
+      mSeconds++;
+      if(mSeconds === 100) {
+        mSeconds = 0;
+        secs++;
+          if(secs === 60) {
+            secs = 0;
+            mints++;
+          }
+      }
+     
+     let formatMints =  mints < 10 ? '0' + mints : mints;
+     let formatSecs = secs < 10 ? '0' + secs : secs;
+     let formatMsecs = mSeconds < 10 ? '0' + mSeconds : mSeconds;
+
+    stopWatch.innerHTML = `${formatMints}:${formatSecs}:${formatMsecs}`;
+    };
+
+</script>
+</body>
+</html>

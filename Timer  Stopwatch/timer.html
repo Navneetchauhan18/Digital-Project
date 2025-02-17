@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .timer-container {
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(120deg, rgb(146, 84, 200), rgb(66, 64, 64));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 80px;
+      color: aliceblue;
+    }
+
+    .timer-play,
+    .timer-pause,
+    .timer-reset {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: space-between;
+      margin: 5px;
+    }
+
+    img {
+      position: relative;
+      top: 100px;
+      left: -290px;
+      cursor: pointer;
+    }
+
+    .input-time {
+     position: absolute;
+     top: 70%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    }
+
+    input {
+      position: relative;
+      right: 20%;
+      height: 30px;
+      width: 60px;
+      color: black;
+      margin: 10px;
+      padding: 5px;
+      border: 1px solid white;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="timer-container">
+  
+    <h2 id="timer">00:00:00</h2>
+    <div class="timer-play">
+      <img src="images/play-button.png" onclick="play()">
+    </div>
+    <div class="timer-pause">
+      <img src="images/pause.png" onclick="stop()">
+    </div>
+    <div class="timer-reset">
+      <img src="images/undo-arrow.png" onclick="reset()">
+    </div>
+    <div class="input-time">
+      <input type="text" placeholder="Hour" min="0" id="hour">
+      <input type="text" placeholder="Minutes" min="0" max="59" id="minutes">
+      <input type="text" placeholder="Second" min="0" max="59" id="seconds">
+    </div>
+  </div>
+
+
+  <script>
+
+   
+    let time = 0;
+    let initialTime = 0;
+    let istimerRunning = false;
+    let setTimeOut;
+
+    const timer = document.getElementById('timer');
+
+    function stop() {
+      if (istimerRunning) {
+        clearInterval(setTimeOut);
+        istimerRunning = false;
+      }
+    };
+
+    function play() {
+      if (!istimerRunning) {
+    const hour = parseInt(document.getElementById("hour").value) || 0;
+    const minutes = parseInt(document.getElementById("minutes").value) || 0;
+    const seconds = parseInt(document.getElementById("seconds").value) || 0;
+
+    time = hour * 3600 + minutes * 60 + seconds;
+    initialTime = time;
+
+    if(time <= 0) {
+      alert("Please Enter a valid time!");
+    }
+
+    document.getElementById("hour").value = "";
+    document.getElementById("minutes").value = "";
+    document.getElementById("seconds").value = "";
+
+        setTimeOut = setInterval(() => {
+          countDown();
+        }, 1000);
+        istimerRunning = true;
+      }
+    }
+  
+
+
+    function countDown() {
+      if(time < 0) {
+        clearInterval(setTimeOut);
+        istimerRunning = false;
+        return;
+      }
+
+      let hour = Math.floor((time / 60) / 60);
+      let minutes = Math.floor((time / 60) % 60);
+      let sec = time % 60;
+
+
+      hour = hour < 10 ? '0' + hour : hour;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      sec = sec < 10 ? '0' + sec : sec;
+
+      timer.innerHTML = `${hour}:${minutes}:${sec}`;
+
+      time--;
+    };
+
+
+    function reset() {
+      stop();
+      time=initialTime;
+      countDown();
+    };
+
+
+  </script>
+</body>
+
+</html>
